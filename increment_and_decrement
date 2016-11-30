@@ -1,0 +1,81 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+    S1 DB "ENTER THE 1ST DIGIT: $ "
+    S2 DB "ENTER THE 2ND DIGIT: $ "
+    S3 DB "INCREMENT 1ST DIGIT: $"
+    S4 DB "DECREMENT 2ND DIGIT: $"
+    V1 DB ?
+    V2 DB ?
+.CODE
+    MAIN PROC           
+        
+        MOV AX,@DATA    
+        MOV DS,AX
+     
+        LEA DX,S1
+        MOV AH,9    ;s1 print
+        INT 21H
+        
+        
+        
+        MOV AH,1     ;input                                 
+        INT 21H
+        MOV V1,AL  
+        
+  
+        MOV AH,2
+        MOV DL,0DH      
+        INT 21H      ;new line
+        MOV DL,0AH      
+        INT 21H
+        
+       
+        LEA DX,S2
+        MOV AH,9       ;s2 print
+        INT 21H
+        
+        MOV AH,1                                       
+        INT 21H       ;input another
+        MOV V2,AL  
+        
+        MOV AH,2
+        MOV DL,0DH    ;new line 
+        INT 21H
+        MOV DL,0AH     
+        INT 21H
+       
+        LEA DX,S3
+        MOV AH,9      ;s3 print
+        INT 21H
+          
+        MOV AL,V1      ;increment
+        INC AL          
+    
+        MOV AH,2
+        MOV DL,AL       ;output
+        INT 21H
+  
+        MOV AH,2
+        MOV DL,0DH    ;newline 
+        INT 21H
+        MOV DL,0AH    
+        INT 21H
+        
+        LEA DX,S4        ;s4 print
+        MOV AH,9
+        INT 21H
+        
+        MOV AL,V2        ;decrement
+        DEC AL          
+         
+        MOV AH,2         ;output
+        MOV DL,AL
+        INT 21H
+        
+        MOV AH,4CH       ;exit
+        INT 21H
+        
+    
+    MAIN ENDP          
+END MAIN 
