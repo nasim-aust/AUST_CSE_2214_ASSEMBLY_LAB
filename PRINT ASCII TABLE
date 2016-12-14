@@ -25,9 +25,8 @@ MAIN PROC
      CMP BL,255
      JE EXIT
      LOOP L2
-	 
-	 
-	 MOV AH,2
+     
+     MOV AH,2
      MOV DL,0AH  ;NEW LINE
      INT 21H
      MOV DL,0DH
@@ -36,12 +35,10 @@ MAIN PROC
      INC BL
      MOV CX,BX
      
-     LOOP L1:           
+     LOOP L1         
      
      
-     
-	 
-	 EXIT:
+     EXIT:
      MOV AH,4CH
      INT 21H
      MAIN ENDP
