@@ -1,0 +1,76 @@
+;PRINT WHICH NUMBER IS GREATER AMONG THREE NUMBERS
+
+.MODEL SMALL
+.STACK 100H
+.DATA 
+MSG1 DB 'ENTER THREE INPUT: $'
+
+
+.CODE
+MAIN PROC
+     ;INITIALIZE
+     MOV AX,@DATA
+     MOV DS,AX
+     
+     
+     LEA DX,MSG1
+     MOV AH,9
+     INT 21H
+     
+     MOV AH,1
+     INT 21H
+     MOV BL,AL
+     INT 21H
+     MOV BH,AL
+     INT 21H
+     MOV CL,AL  
+                
+                
+                
+     MOV AH,2
+     MOV DL,0AH  ;NEW LINE
+     INT 21H
+     MOV DL,0DH
+     INT 21H   
+     
+     
+     CMP BL,BH
+     JGE L2 ;JUMP IF GREATER THAN OR EQUAL TO
+     
+     L1:
+     CMP BH,CL 
+     JGE LL1 
+     ;IF CL IS GREATER THAN IT WORKS
+     MOV AH,2
+     MOV DL,CL
+     INT 21H  
+     
+     JMP EXIT
+     
+     LL1:
+     MOV AH,2
+     MOV DL,BH   ;PRINT BH IF BH IS GREATER THAN CL
+     INT 21H 
+     
+     JMP EXIT
+     
+     L2:
+     CMP BL,CL  
+     JGE LL2
+     MOV AH,2
+     MOV DL,CL   ;PRINT CL IF CL IS GREATER
+     INT 21H  
+     
+     JMP EXIT
+     
+     LL2:
+     MOV AH,2
+     MOV DL,BL   ;PRINT BL IF BL IS GREATER
+     INT 21H 
+
+     
+     EXIT:
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
