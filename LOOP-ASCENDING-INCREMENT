@@ -1,0 +1,36 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+
+
+.CODE
+MAIN PROC
+     ;INITIALIZE
+     MOV AX,@DATA
+     MOV DS,AX  
+     
+     
+     MOV AH,1
+     INT 21H
+     MOV BL,AL
+     
+     MOV CL,'1'
+     
+    TOP: 
+     MOV AH,2
+     MOV DL,CL
+     INT 21H
+     INC CL
+     CMP BL,CL
+     JE EXIT    ;JUMP IF EQUAL
+     
+     JMP TOP
+	 
+	 
+	 
+	 
+	 EXIT:
+     MOV AH,4CH
+     INT 21H
+     MAIN ENDP
+END MAIN
