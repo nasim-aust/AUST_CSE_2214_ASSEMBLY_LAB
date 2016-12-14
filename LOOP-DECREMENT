@@ -16,7 +16,7 @@ MAIN PROC
      MOV DL,BL
      INT 21H
      DEC BL
-     CMP BL,CL
+     CMP BL,'0'
      JE EXIT    ;JUMP IF EQUAL
      
      JMP TOP
