@@ -1,0 +1,48 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+
+
+.CODE
+MAIN PROC
+     ;INITIALIZE
+     MOV AX,@DATA
+     MOV DS,AX 
+     
+     MOV CX,0
+     
+    L1: 
+     MOV BX,CX
+     MOV CX,8
+     
+     
+    L2: 
+     MOV AH,2
+     MOV DL,BL
+     INT 21H 
+     
+     INC BL
+     CMP BL,255
+     JE EXIT
+     LOOP L2
+	 
+	 
+	 MOV AH,2
+     MOV DL,0AH  ;NEW LINE
+     INT 21H
+     MOV DL,0DH
+     INT 21H  
+                
+     INC BL
+     MOV CX,BX
+     
+     LOOP L1:           
+     
+     
+     
+	 
+	 EXIT:
+     MOV AH,4CH
+     INT 21H
+     MAIN ENDP
+END MAIN
