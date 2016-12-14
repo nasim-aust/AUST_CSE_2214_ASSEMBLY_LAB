@@ -1,0 +1,45 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+
+
+.CODE
+MAIN PROC
+     ;INITIALIZE
+     MOV AX,@DATA
+     MOV DS,AX   
+     
+     
+     MOV CX,4 ;LINE 
+     ;BX WORKS FOR EVERY CX
+     MOV BX,8  ;NUMBER OF STAR
+     ;NESTED LOOP
+     
+    TOP: 
+     MOV AH,2
+     MOV DL,'*'
+     INT 21H
+     DEC BX   
+     
+     CMP BX,0
+     JE EXIT
+     
+     JMP TOP
+     
+     
+	 
+	 EXIT:   
+	 
+	 MOV AH,2
+     MOV DL,0AH  ;NEW LINE
+     INT 21H
+     MOV DL,0DH
+     INT 21H 
+     
+     MOV BX,6
+     LOOP TOP;EI LOOP KE DRIVE KRCE CX
+	 
+     MOV AH,4CH
+     INT 21H
+     MAIN ENDP
+END MAIN
