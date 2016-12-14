@@ -1,0 +1,40 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+
+
+.CODE
+MAIN PROC
+     ;INITIALIZE
+     MOV AX,@DATA
+     MOV DS,AX  
+     
+     
+     MOV AH,1
+     INT 21H     ;INPUT
+     MOV BL,AL
+     ;SUB AL,48
+   
+   LOOP:  
+     MOV CX,0  ;LOOP-HOW MANY TIMES * PRINT
+     MOV CL,AL
+     SUB CL,48 ;CONVERT DECIMAL
+     MOV AH,2
+     MOV DL,'*'
+     
+     TOP:
+     INT 21H 
+     LOOP TOP ;SPACE FOR HOW MANY TIMES * PRINT
+	 
+	 
+	 MOV AH,2
+     MOV DL,0AH  ;NEW LINE
+     INT 21H
+     MOV DL,0DH
+     INT 21H 
+	 
+	EXIT:
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
