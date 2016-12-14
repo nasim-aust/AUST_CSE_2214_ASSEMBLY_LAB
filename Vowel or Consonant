@@ -1,0 +1,63 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+MSG1 DB 'ENTER THE CHAR IN CAPITAL LETTER: $'
+MSG2 DB 'VOWEL! $'
+MSG3 DB 'CONSONANT! $'
+
+
+.CODE
+MAIN PROC
+     ;INITIALIZE
+     MOV AX,@DATA
+     MOV DS,AX
+	            
+	 LEA DX,MSG1
+	 MOV AH,9
+	 INT 21H
+	 
+	            
+	 
+	 MOV AH,2
+     MOV DL,0AH  ;NEW LINE
+     INT 21H
+     MOV DL,0DH
+     INT 21H 
+     
+     MOV AH,1
+     INT 21H
+     MOV BL,AL 
+     
+     CMP BL,'A'
+     JE L1
+     
+     CMP BL,'E'
+     JE L1
+     
+     CMP BL,'I'
+     JE L1
+     
+     CMP BL,'O'
+     JE L1
+     
+     CMP BL,'U'
+     JE L1
+     
+     LEA DX,MSG3
+	 MOV AH,9
+	 INT 21H 
+	 
+	 JMP EXIT   
+     
+     L1:
+     LEA DX,MSG2
+	 MOV AH,9
+	 INT 21H   
+	  
+
+	 
+	 EXIT:
+     MOV AH,4CH
+     INT 21H
+     MAIN ENDP
+END MAIN
